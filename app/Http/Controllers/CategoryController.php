@@ -73,13 +73,20 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        if(Category::destroy($category->id)){
+            return redirect("category")->with("success", "Successfully Deleted");  
+        }
     }
     //single method
-    public function single($id=1){
+    public function single($id=false){
         // $catinfo = Category::find($id)->toArray();
-        $catinfo = Category::find($id);
-        dd($catinfo->name);
+        if($id){
+        $catinfo = Category::find($id);  
+        }
+        else{
+        $catinfo = Category::all();
+        }
+        return response()->json($catinfo);
 
     }
 }

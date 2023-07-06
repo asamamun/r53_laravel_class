@@ -94,5 +94,9 @@ Route::get('/vc', function() {
     $exitCode = Artisan::call('view:clear');
     echo "view cleared";
 });
+/* Route::get('/rl', function() {
+    $exitCode = Artisan::call('route:list');
+    echo $exitCode;    
+}); */
 
 require __DIR__.'/auth.php';

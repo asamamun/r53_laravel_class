@@ -1,6 +1,8 @@
 <html>
     <head>
         <title>{{ $title ?? 'Todo Manager' }}</title>
+        {{-- CSRF --}}
+        <meta name="csrf-token" content="<?php echo csrf_token(); ?>" id="token">
         <link rel="stylesheet" href="{{ asset('build/assets/css/bootstrap.min.css') }}">
         @yield('css')
     </head>
