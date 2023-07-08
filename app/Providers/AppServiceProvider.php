@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,5 +22,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFive();
+        Blade::directive('datetime', function () {
+            return "<?php echo date('d-m-Y H:i:s A') ?>";
+        });
+        Blade::directive('ifGuest', function () {
+            return "<?php if (auth()->guest()): ?>";
+            });
     }
 }

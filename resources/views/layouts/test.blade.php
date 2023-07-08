@@ -9,10 +9,20 @@
     <body>
     <div class="container">
     @include('layouts.nav')
+    @includeWhen(Auth::check(), 'layouts.authonly', ['some' => 'data'])
     @include('partials.flash')
-
+<div class="row">
+    <div class="col-9">@yield('content')</div>
+    <div class="col-3">
+        @section('sidebar')
+            <div>
+                <input type="search" placeholder="Search" name="" id="">
+            </div>
+        @show
+    </div>
+</div>
         
-    @yield('content')
+    
     </div>
     <script src="{{ asset("build/assets/js/bootstrap.bundle.min.js") }}"></script>
     @yield('script')

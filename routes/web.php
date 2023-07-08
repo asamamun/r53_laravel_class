@@ -75,6 +75,7 @@ Route::middleware('auth')->group(function(){
         ]);
     Route::get('/products', [WebsiteController::class, 'products']);
     Route::get('/services', [WebsiteController::class, 'services']);
+    Route::get('/testblade', [WebsiteController::class, 'testblade']);
     Route::resources([
         'category' => CategoryController::class,
     ]);

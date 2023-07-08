@@ -3,6 +3,7 @@
     <a href="{{url("about")}}">About</a> | 
     <a href="{{url("products")}}">Products</a> | 
     <a href="{{url("services")}}">Services</a> |
+    <a href="{{url("testblade")}}">Blade</a> |
 </div>
 <div style="float: right">
 @if (Auth::check())
