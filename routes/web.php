@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +79,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/testblade', [WebsiteController::class, 'testblade']);
     Route::resources([
         'category' => CategoryController::class,
+        'product' => ProductController::class,
     ]);
 });
 
