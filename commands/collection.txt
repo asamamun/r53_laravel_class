@@ -1,0 +1,181 @@
+Microsoft Windows [Version 10.0.19045.3086]
+(c) Microsoft Corporation. All rights reserved.
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>composer require barryvdh/laravel-debugbar --dev
+Info from https://repo.packagist.org: #StandWithUkraine
+./composer.json has been updated
+Running composer update barryvdh/laravel-debugbar
+Loading composer repositories with package information
+Updating dependencies
+Lock file operations: 2 installs, 0 updates, 0 removals
+  - Locking barryvdh/laravel-debugbar (v3.8.1)
+  - Locking maximebf/debugbar (v1.18.2)
+Writing lock file
+Installing dependencies from lock file (including require-dev)
+Package operations: 2 installs, 0 updates, 0 removals
+  - Downloading maximebf/debugbar (v1.18.2)
+  - Downloading barryvdh/laravel-debugbar (v3.8.1)
+  - Installing maximebf/debugbar (v1.18.2): Extracting archive
+  - Installing barryvdh/laravel-debugbar (v3.8.1): Extracting archive
+2 package suggestions were added by new dependencies, use `composer suggest` to see details.
+Generating optimized autoload files
+> Illuminate\Foundation\ComposerScripts::postAutoloadDump
+> @php artisan package:discover --ansi
+
+   INFO  Discovering packages.
+
+  barryvdh/laravel-debugbar ...................................... DONE
+  laravel/breeze ................................................. DONE
+  laravel/sail ................................................... DONE
+  laravel/sanctum ................................................ DONE
+  laravel/tinker ................................................. DONE
+  nesbot/carbon .................................................. DONE
+  nunomaduro/collision ........................................... DONE
+  nunomaduro/termwind ............................................ DONE
+  spatie/laravel-ignition ........................................ DONE
+
+83 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+> @php artisan vendor:publish --tag=laravel-assets --ansi --force
+
+   INFO  No publishable resources for tag [laravel-assets].
+
+No security vulnerability advisories found
+Using version ^3.8 for barryvdh/laravel-debugbar
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan migrate:rollback
+
+   INFO  Rolling back migrations.
+
+  2023_07_09_102941_create_images_table .................... 145ms DONE
+  2023_07_09_102003_create_products_table .................. 102ms DONE
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan migrate
+
+   INFO  Running migrations.
+
+  2023_07_09_102003_create_products_table ................ 1,612ms DONE
+  2023_07_09_102941_create_images_table .................... 841ms DONE
+  2023_07_10_101013_create_wives_table ..................... 274ms DONE
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan db:seed
+
+   INFO  Seeding database.
+
+  Database\Seeders\ProductSeeder .............................. RUNNING
+  Database\Seeders\ProductSeeder ..................... 1,072.36 ms DONE
+
+  Database\Seeders\PhotoSeeder ................................ RUNNING
+
+   Illuminate\Database\QueryException
+
+  SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`r53_laravel`.`images`, CONSTRAINT `images_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE) (Connection: mysql, SQL: insert into `images` (`product_id`, `name`) values (31, https://picsum.photos/id/601/640/480))
+
+  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:795
+    791▕         // If an exception occurs when attempting to run a query, we'll format the error
+    792▕         // message to include the bindings with SQL, which will make this exception a
+    793▕         // lot more helpful to the developer instead of just the database's errors.
+    794▕         catch (Exception $e) {
+  ➜ 795▕             throw new QueryException(
+    796▕                 $this->getName(), $query, $this->prepareBindings($bindings), $e
+    797▕             );
+    798▕         }
+    799▕     }
+
+  1   vendor\laravel\framework\src\Illuminate\Database\Connection.php:580
+      PDOException::("SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`r53_laravel`.`images`, CONSTRAINT `images_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE)")
+
+  2   vendor\laravel\framework\src\Illuminate\Database\Connection.php:580
+      PDOStatement::execute()
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan migrate:rollback
+
+   INFO  Rolling back migrations.
+
+  2023_07_10_101013_create_wives_table ..................... 135ms DONE
+  2023_07_09_102941_create_images_table .................... 331ms DONE
+  2023_07_09_102003_create_products_table ................... 92ms DONE
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan migrate
+
+   INFO  Running migrations.
+
+  2023_07_09_102003_create_products_table ................ 2,347ms DONE
+  2023_07_09_102941_create_images_table .................... 937ms DONE
+  2023_07_10_101013_create_wives_table ..................... 144ms DONE
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan db:seed
+
+   INFO  Seeding database.
+
+  Database\Seeders\ProductSeeder .............................. RUNNING
+  Database\Seeders\ProductSeeder ..................... 3,250.01 ms DONE
+
+  Database\Seeders\PhotoSeeder ................................ RUNNING
+  Database\Seeders\PhotoSeeder ...................... 15,138.84 ms DONE
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan migrate:rollback
+
+   INFO  Rolling back migrations.
+
+  2023_07_10_101013_create_wives_table ..................... 156ms DONE
+  2023_07_09_102941_create_images_table .................... 170ms DONE
+  2023_07_09_102003_create_products_table .................. 395ms DONE
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan migrate
+
+   INFO  Running migrations.
+
+  2023_07_09_102003_create_products_table ................ 1,370ms DONE
+  2023_07_09_102941_create_images_table .................... 795ms DONE
+  2023_07_10_101013_create_wives_table ..................... 141ms DONE
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan db:seed
+
+   INFO  Seeding database.
+
+  Database\Seeders\ProductSeeder .............................. RUNNING
+  Database\Seeders\ProductSeeder ..................... 3,854.12 ms DONE
+
+  Database\Seeders\PhotoSeeder ................................ RUNNING
+  Database\Seeders\PhotoSeeder ...................... 22,153.14 ms DONE
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan tinker;
+
+
+  Command "tinker;" is not defined.
+
+
+ Do you want to run "tinker" instead?  (yes/no) [no]:
+ > yes
+
+Psy Shell v0.11.18 (PHP 8.1.10 — cli) by Justin Hileman
+> $c = collect([1,2,3,4]);
+= Illuminate\Support\Collection {#7266
+    all: [
+      1,
+      2,
+      3,
+      4,
+    ],
+  }
+
+> $sum = $c->filter(function($i){return $i%2==0})->map(function($i){retur
+n $i*10})->sum();
+
+   PARSE ERROR  PHP Parse error: Syntax error, unexpected '}', expecting ';' in vendor\psy\psysh\src\Exception\ParseErrorException.php on line 38.
+
+> $sum = $c->filter(function($i){return $i%2==0;})->map(function($i){retu
+rn $i*10;})->sum();
+= 60
+
+>  

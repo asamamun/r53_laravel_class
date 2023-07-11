@@ -2,6 +2,7 @@
     <a href="{{url("/")}}">Home</a> | 
     <a href="{{url("about")}}">About</a> | 
     <a href="{{url("products")}}">Products</a> | 
+    <a href="{{url("product")}}">Product</a> | 
     <a href="{{url("services")}}">Services</a> |
     <a href="{{url("testblade")}}">Blade</a> |
 </div>

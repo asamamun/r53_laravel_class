@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,12 @@ Route::get('/cat/{id?}', [CategoryController::class, 'single']);
 // Route::get('/cat/{id?}', [CategoryController::class, 'single']);
 Route::apiResource('photo', 'App\http\Controllers\API\PhotoController');
 Route::apiResource('cg', 'App\http\Controllers\CategoryController');
+Route::get('products', function () {
+    return Product::all()->toJson();
+    });
+Route::get('products/{id}', function ($id) {
+        return Product::findOrFail($id);
+        });    
 /*
 <h1>Api Resource controller</h1>
 Verb          Path                        Action  Route Name

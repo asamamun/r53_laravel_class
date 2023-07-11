@@ -77,6 +77,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/products', [WebsiteController::class, 'products']);
     Route::get('/services', [WebsiteController::class, 'services']);
     Route::get('/testblade', [WebsiteController::class, 'testblade']);
+    Route::post('/productrestore/{id}', [ProductController::class, 'restore'])->name('product.restore');
     Route::resources([
         'category' => CategoryController::class,
         'product' => ProductController::class,

@@ -1,0 +1,187 @@
+Microsoft Windows [Version 10.0.19045.3086]
+(c) Microsoft Corporation. All rights reserved.
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan tinker
+Psy Shell v0.11.18 (PHP 8.1.10 — cli) by Justin Hileman
+> use App\Models\Category;
+> use App\Models\Subcategory;
+> $all = Category::all();
+= Illuminate\Database\Eloquent\Collection {#7263
+    all: [
+      App\Models\Category {#7265
+        id: 1,
+        name: "Automobiles",
+        created_at: "2023-07-09 10:16:46",
+        updated_at: "2023-07-09 10:17:28",
+      },
+      App\Models\Category {#7266
+        id: 2,
+        name: "Books",
+        created_at: "2023-07-09 10:16:53",
+        updated_at: "2023-07-09 10:17:42",
+      },
+      App\Models\Category {#7267
+        id: 3,
+        name: "Clothes",
+        created_at: "2023-07-09 10:16:57",
+        updated_at: "2023-07-09 10:17:15",
+      },
+      App\Models\Category {#7268
+        id: 5,
+        name: "Electronics",
+        created_at: null,
+        updated_at: null,
+      },
+      App\Models\Category {#7269
+        id: 6,
+        name: "Home and Living",
+        created_at: "2023-07-10 15:32:59",
+        updated_at: null,
+      },
+      App\Models\Category {#7270
+        id: 7,
+        name: "Shoe",
+        created_at: "2023-07-10 09:54:18",
+        updated_at: "2023-07-10 09:54:18",
+      },
+    ],
+  }
+
+> $all = Category::with('subcategories')->all();
+
+   BadMethodCallException  Call to undefined method Illuminate\Database\Eloquent\Builder::all().
+
+> $all = Category::with('subcategories')->get();
+= Illuminate\Database\Eloquent\Collection {#7258
+    all: [
+      App\Models\Category {#7283
+        id: 1,
+        name: "Automobiles",
+        created_at: "2023-07-09 10:16:46",
+        updated_at: "2023-07-09 10:17:28",
+        subcategories: Illuminate\Database\Eloquent\Collection {#7301
+          all: [
+            App\Models\Subcategory {#7305
+              id: 1,
+              name: "Bike",
+              category_id: 1,
+              created_at: null,
+              updated_at: null,
+            },
+            App\Models\Subcategory {#7306
+              id: 2,
+              name: "Car",
+              category_id: 1,
+              created_at: null,
+              updated_at: null,
+            },
+            App\Models\Subcategory {#7310
+              id: 6,
+              name: "BUS",
+              category_id: 1,
+              created_at: "2023-07-10 10:27:34",
+              updated_at: "2023-07-10 10:27:34",
+            },
+            App\Models\Subcategory {#7311
+              id: 7,
+              name: "truck",
+              category_id: 1,
+              created_at: "2023-07-10 10:34:52",
+              updated_at: "2023-07-10 10:34:52",
+            },
+            App\Models\Subcategory {#7312
+              id: 8,
+              name: "bikee",
+              category_id: 1,
+              created_at: "2023-07-10 10:41:32",
+              updated_at: "2023-07-10 10:41:32",
+            },
+            App\Models\Subcategory {#7313
+              id: 9,
+              name: "likee",
+              category_id: 1,
+              created_at: "2023-07-10 10:43:32",
+              updated_at: "2023-07-10 10:43:32",
+            },
+            App\Models\Subcategory {#7314
+              id: 10,
+              name: "ikee",
+              category_id: 1,
+              created_at: "2023-07-10 10:45:31",
+              updated_at: "2023-07-10 10:45:31",
+            },
+          ],
+        },
+      },
+      App\Models\Category {#7284
+        id: 2,
+        name: "Books",
+        created_at: "2023-07-09 10:16:53",
+        updated_at: "2023-07-09 10:17:42",
+        subcategories: Illuminate\Database\Eloquent\Collection {#7277
+          all: [],
+        },
+      },
+      App\Models\Category {#7285
+        id: 3,
+        name: "Clothes",
+        created_at: "2023-07-09 10:16:57",
+        updated_at: "2023-07-09 10:17:15",
+        subcategories: Illuminate\Database\Eloquent\Collection {#7244
+          all: [],
+        },
+      },
+      App\Models\Category {#7286
+        id: 5,
+        name: "Electronics",
+        created_at: null,
+        updated_at: null,
+        subcategories: Illuminate\Database\Eloquent\Collection {#7281
+          all: [
+            App\Models\Subcategory {#7307
+              id: 3,
+              name: "Mobile",
+              category_id: 5,
+              created_at: null,
+              updated_at: null,
+            },
+            App\Models\Subcategory {#7308
+              id: 4,
+              name: "Laptop",
+              category_id: 5,
+              created_at: null,
+              updated_at: null,
+            },
+          ],
+        },
+      },
+      App\Models\Category {#7287
+        id: 6,
+        name: "Home and Living",
+        created_at: "2023-07-10 15:32:59",
+        updated_at: null,
+        subcategories: Illuminate\Database\Eloquent\Collection {#7246
+          all: [
+            App\Models\Subcategory {#7309
+              id: 5,
+              name: "Furniture",
+              category_id: 6,
+              created_at: null,
+              updated_at: null,
+            },
+          ],
+        },
+      },
+      App\Models\Category {#7288
+        id: 7,
+        name: "Shoe",
+        created_at: "2023-07-10 09:54:18",
+        updated_at: "2023-07-10 09:54:18",
+        subcategories: Illuminate\Database\Eloquent\Collection {#7289
+          all: [],
+        },
+      },
+    ],
+  }
+
+>  

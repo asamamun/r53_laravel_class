@@ -1,0 +1,95 @@
+git link: git clone  https://github.com/asamamun/r53_laravel_class.git
+
+composer create-project laravel/laravel r53bookcode
+
+cd r53bookcode
+
+php artisan serve
+
+configure .env for db connection then run: php artisan migrate
+
+4/5 tables will be created
+
+for auth:
+composer require laravel/breeze --dev
+php artisan breeze:install blade
+php artisan migrate
+npm install
+npm run build
+
+to create controller:
+php artisan make:controller TestController
+
+to create model:
+php artisan make:model Category -mcrR
+
+link: https://laravel.com/docs/10.x/eloquent#generating-model-classes
+
+Resource(controller):
+https://laravel.com/docs/10.x/controllers#actions-handled-by-resource-controller
+
+php artisan storage:link
+
+php artisan route:list
+
+########### BOOTSTRAP 5 pagination ##############
+go to App\Providers\AppServiceProvider; and edit boot method
+
+use Illuminate\Pagination\Paginator;
+public function boot(): void
+    {
+        Paginator::useBootstrapFive();
+    }
+_____________in controller_______________________
+$users = User::paginate(2);
+        // return view('website.home',compact('users'));
+return view('website.home',['users' => $users]);
+_____________in view_____________	
+{{$users->links()}}
+
+//artisan commands
+
+
+
+//add column to table migration commands
+php artisan make:migration add_roles_to_users_table --table=users
+
+
+//Set The path to your application's "home" route to RouteServiceProvider.php file:
+public const HOME = '/';
+
+
+
+################FAKER################
+$faker = Faker\Factory::create();
+
+$faker->name; // First and second name
+$faker->randomDigit; // A random number
+$faker->word; // A single word
+$faker->sentence; // A sentence
+$faker->unique()->word; // A single unique word
+$faker->text($maxNbChars = 300); // 300 character long text
+$faker->safeEmail; // An email address
+$faker->hexcolor; // Hex color
+
+###############seed################
+php artisan make:seeder PhotoSeeder
+###############factory################
+php artisan make:factory CategoryFactory
+
+
+php artisan db:seed
+
+
+################DEBUGBAR##################
+composer require barryvdh/laravel-debugbar --dev
+
+##########SOFT DELETE#############
+1. add deleted_at in table. ($table->softDeletes();)
+2. In model add: 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+use SoftDeletes; // use the trait
+protected $dates = ['deleted_at']; // mark this column as a date
+3. 	to view records with deleted data use withTrashed() like the following: 
+$products = Product::withTrashed()->paginate(20);

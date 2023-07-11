@@ -1,0 +1,40 @@
+Microsoft Windows [Version 10.0.19045.3086]
+(c) Microsoft Corporation. All rights reserved.
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan tinker
+Psy Shell v0.11.18 (PHP 8.1.10 — cli) by Justin Hileman
+> use App\Models\User;
+> use App\Models\Profile;
+> $u = User::find(1);
+= App\Models\User {#7259
+    id: 1,
+    name: "admin",
+    email: "admin@gmail.com",
+    email_verified_at: null,
+    #password: "$2y$10$YI3/Nmz6EffYggvm1Xgc5.unhLxedp.CYmjuw3L78/YitA53.ywoG",
+    role: 1,
+    #remember_token: null,
+    created_at: "2023-07-04 10:14:58",
+    updated_at: "2023-07-04 10:14:58",
+  }
+
+> $p = new Profile();
+= App\Models\Profile {#7249}
+
+> $p->phone = "123456789";
+= "123456789"
+
+> $u->profile()->save($p);
+
+   Illuminate\Database\QueryException  SQLSTATE[HY000]: General error: 1364 Field 'father_name' doesn't have a default value (Connection: mysql, SQL: insert into `profiles` (`phone`, `user_id`, `updated_at`, `created_at`) values (123456789, 1, 2023-07-11 18:32:30, 2023-07-11 18:32:30)).
+
+> $u->profile()->save($p);
+= App\Models\Profile {#7249
+    phone: "123456789",
+    user_id: 1,
+    updated_at: "2023-07-11 18:32:30",
+    created_at: "2023-07-11 18:32:30",
+    id: 1,
+  }
+
+>  

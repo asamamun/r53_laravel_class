@@ -1,0 +1,347 @@
+Microsoft Windows [Version 10.0.19045.3086]
+(c) Microsoft Corporation. All rights reserved.
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan tinker
+Psy Shell v0.11.18 (PHP 8.1.10 — cli) by Justin Hileman
+> $c = new Category();
+
+   Error  Class "Category" not found.
+
+> use App\Models\Category;
+> $c = new Category();
+= App\Models\Category {#7222}
+
+> $c->name = "Shoe";
+= "Shoe"
+
+> $c->save();
+= true
+
+> $p = Product::findOrFail(101);
+
+   Error  Class "Product" not found.
+
+> use App\Models\Product;
+> $p = Product::findOrFail(101);
+= App\Models\Product {#7227
+    id: 101,
+    category_id: 1,
+    subcategory_id: 1,
+    name: "ut",
+    sku: "202332reiciendis",
+    details: "Molestiae soluta ut molestias autem delectus est. Voluptatem qui id ut sed consequatur. Error est eos et est ab.",
+    price: 60.0,
+    quantity: 9,
+    status: 1,
+    hot: 0,
+    new: 1,
+    created_at: "2023-07-10 09:48:33",
+    updated_at: "2023-07-10 09:48:33",
+  }
+
+> $p = Product::findOrFail(201);
+
+   Illuminate\Database\Eloquent\ModelNotFoundException  No query results for model [App\Models\Product] 201.
+
+> Product::take(3)->get();
+= Illuminate\Database\Eloquent\Collection {#7232
+    all: [
+      App\Models\Product {#7223
+        id: 1,
+        category_id: 6,
+        subcategory_id: 5,
+        name: "tempore",
+        sku: "202345quia",
+        details: "Voluptatem rerum temporibus explicabo blanditiis eos nobis saepe. Voluptas et vel magnam. Qui cupiditate non quasi minus sit nisi vel. Voluptatem dolorum aut rem modi laborum qui.",
+        price: 0.0,
+        quantity: 2,
+        status: 1,
+        hot: 0,
+        new: 1,
+        created_at: "2023-07-09 12:34:46",
+        updated_at: "2023-07-09 12:34:46",
+      },
+      App\Models\Product {#7251
+        id: 2,
+        category_id: 1,
+        subcategory_id: 2,
+        name: "iste",
+        sku: "202345optio",
+        details: "Assumenda laudantium est et molestiae illum veniam repellat. Aut a quis facilis asperiores. Vel explicabo a unde id. Delectus error ut consectetur.",
+        price: 2.0,
+        quantity: 2,
+        status: 1,
+        hot: 0,
+        new: 1,
+        created_at: "2023-07-09 12:34:46",
+        updated_at: "2023-07-09 12:34:46",
+      },
+      App\Models\Product {#7252
+        id: 3,
+        category_id: 1,
+        subcategory_id: 1,
+        name: "eaque",
+        sku: "202345illum",
+        details: "Quasi debitis est voluptatem minima eligendi distinctio. Neque reprehenderit quos excepturi rerum officiis velit pariatur. Magnam possimus qui tempore qui molestiae molestiae.",
+        price: 2.0,
+        quantity: 7,
+        status: 1,
+        hot: 0,
+        new: 1,
+        created_at: "2023-07-09 12:34:46",
+        updated_at: "2023-07-09 12:34:46",
+      },
+    ],
+  }
+
+> Product::take(3)->skip(6)->get();
+= Illuminate\Database\Eloquent\Collection {#7235
+    all: [
+      App\Models\Product {#7257
+        id: 7,
+        category_id: 1,
+        subcategory_id: 2,
+        name: "reprehenderit",
+        sku: "202345esse",
+        details: "At sunt minus aperiam vitae laudantium aut rem dolore. Quia aut et dolorem distinctio omnis culpa. Labore cum quae repellat cum velit.",
+        price: 4.0,
+        quantity: 2,
+        status: 1,
+        hot: 0,
+        new: 1,
+        created_at: "2023-07-09 12:34:46",
+        updated_at: "2023-07-09 12:34:46",
+      },
+      App\Models\Product {#7255
+        id: 8,
+        category_id: 1,
+        subcategory_id: 2,
+        name: "nihil",
+        sku: "202345omnis",
+        details: "Ad sit non debitis molestiae nihil nemo tempore. At nemo doloribus sit enim modi atque illo. Est et nemo at at incidunt vel.",
+        price: 6.0,
+        quantity: 6,
+        status: 1,
+        hot: 0,
+        new: 1,
+        created_at: "2023-07-09 12:34:46",
+        updated_at: "2023-07-09 12:34:46",
+      },
+      App\Models\Product {#7228
+        id: 9,
+        category_id: 1,
+        subcategory_id: 1,
+        name: "vel",
+        sku: "202345officiis",
+        details: "Asperiores mollitia sapiente ex et. Qui deleniti aut ducimus corrupti ut quia natus aut. Enim animi officiis molestias debitis. Vero provident qui minima omnis ad consequatur dolorem.",
+        price: 0.0,
+        quantity: 3,
+        status: 1,
+        hot: 0,
+        new: 1,
+        created_at: "2023-07-09 12:34:46",
+        updated_at: "2023-07-09 12:34:46",
+      },
+    ],
+  }
+
+> Product::take(3)->skip(6)->first();
+= App\Models\Product {#7241
+    id: 7,
+    category_id: 1,
+    subcategory_id: 2,
+    name: "reprehenderit",
+    sku: "202345esse",
+    details: "At sunt minus aperiam vitae laudantium aut rem dolore. Quia aut et dolorem distinctio omnis culpa. Labore cum quae repellat cum velit.",
+    price: 4.0,
+    quantity: 2,
+    status: 1,
+    hot: 0,
+    new: 1,
+    created_at: "2023-07-09 12:34:46",
+    updated_at: "2023-07-09 12:34:46",
+  }
+
+> Product::chunk(20,function($p){foreach($p as $sp){$sp->name}});
+
+   PARSE ERROR  PHP Parse error: Syntax error, unexpected '}' in vendor\psy\psysh\src\Exception\ParseErrorException.php on line 38.
+
+> Product::chunk(20,function($p){ foreach($p as $sp){ $sp->name } } );
+
+   PARSE ERROR  PHP Parse error: Syntax error, unexpected '}' in vendor\psy\psysh\src\Exception\ParseErrorException.php on line 38.
+
+> Product::chunk(20,function($p){ foreach($p as $sp){ $sp->name; } })
+= true
+
+> Product::chunk(20,function($p){ foreach($p as $sp){ echo $sp->name; } }
+)
+temporeisteeaqueestaspernaturcommodireprehenderitnihilvelvoluptateametvoluptatemvoluptateidodiodoloresrerummaioresodiominusmaioresdoloresquibusdamdoloresquasfugamagniomnisquodeadelectusdoloribusperspiciatisquaeratexetsedquaeaperiamcumqueducimusvoluptasaliassintminusadautemaliasimpeditarepellendusvoluptasvoluptatibusblanditiislaborumiureofficiaremveritatismaioresfugaautemvoluptasautemdoloresetvelitlaboredignissimosnobisconsequunturutdoloremipsumetnihilinautpraesentiumsequinemolaborumitaquefacerenisimaioresfugautututnamadsaepemaioresquasiullamquiadoloresametquoutdistinctionecessitatibusdeseruntestdolormolestiasmodierrordolorematestomnisfugiattemporavoluptatemutnesciuntreprehenderitasperioreseosquibeataenullavoluptasofficiautveniamilloviewsoniccommodietimpeditoditprovidentsuscipitexadearerumsaepefacereaspernaturdistinctioeumautdebitisenimiureestrerumquismagnisolutanatusrepellenduslaboriosamquaseosid⏎
+= true
+
+>  
+
+
+
+#############################Another FIle######################
+Microsoft Windows [Version 10.0.19045.3086]
+(c) Microsoft Corporation. All rights reserved.
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan tinker
+Psy Shell v0.11.18 (PHP 8.1.10 — cli) by Justin Hileman
+> 5+5
+= 10
+
+> compact("a");
+
+   WARNING  compact(): Undefined variable $a.
+
+= []
+
+> $a=5;
+= 5
+
+> compact("a");
+= [
+    "a" => 5,
+  ]
+
+> bye
+
+   Error  Undefined constant "bye".
+
+> exit;
+
+   INFO  Goodbye.
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan make:seeder PhotoSeeder
+
+   INFO  Seeder [D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class\database/seeders/PhotoSeeder.php] created successfully.
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan db:seed
+
+   INFO  Seeding database.
+
+  Database\Seeders\ProductSeeder .............................. RUNNING
+  Database\Seeders\ProductSeeder ..................... 1,691.75 ms DONE
+
+  Database\Seeders\PhotoSeeder ................................ RUNNING
+
+   Illuminate\Database\QueryException
+
+  SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`r53_laravel`.`images`, CONSTRAINT `images_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)) (Connection: mysql, SQL: insert into `images` (`product_id`, `name`) values (0, https://picsum.photos/id/981/640/480))
+
+  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:795
+    791▕         // If an exception occurs when attempting to run a query, we'll format the error
+    792▕         // message to include the bindings with SQL, which will make this exception a
+    793▕         // lot more helpful to the developer instead of just the database's errors.
+    794▕         catch (Exception $e) {
+  ➜ 795▕             throw new QueryException(
+    796▕                 $this->getName(), $query, $this->prepareBindings($bindings), $e
+    797▕             );
+    798▕         }
+    799▕     }
+
+  1   vendor\laravel\framework\src\Illuminate\Database\Connection.php:580
+      PDOException::("SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`r53_laravel`.`images`, CONSTRAINT `images_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`))")
+
+  2   vendor\laravel\framework\src\Illuminate\Database\Connection.php:580
+      PDOStatement::execute()
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan db:seed
+
+   INFO  Seeding database.
+
+  Database\Seeders\ProductSeeder .............................. RUNNING
+  Database\Seeders\ProductSeeder ....................... 957.17 ms DONE
+
+  Database\Seeders\PhotoSeeder ................................ RUNNING
+  Database\Seeders\PhotoSeeder ...................... 19,275.36 ms DONE
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan tinker
+Psy Shell v0.11.18 (PHP 8.1.10 — cli) by Justin Hileman
+> echo "hi";
+hi⏎
+> $x = 5;
+= 5
+
+> echo $x;
+5⏎
+> use App\Models\Product;
+> Product::find(1);
+= App\Models\Product {#7237
+    id: 1,
+    category_id: 6,
+    subcategory_id: 5,
+    name: "tempore",
+    sku: "202345quia",
+    details: "Voluptatem rerum temporibus explicabo blanditiis eos nobis saepe. Voluptas et vel magnam. Qui cupiditate non quasi minus sit nisi vel. Voluptatem dolorum aut rem modi laborum qui.",
+    price: 0.0,
+    quantity: 2,
+    status: 1,
+    hot: 0,
+    new: 1,
+    created_at: "2023-07-09 12:34:46",
+    updated_at: "2023-07-09 12:34:46",
+  }
+
+> Product::with('images')->find(1);
+
+   Illuminate\Database\Eloquent\RelationNotFoundException  Call to undefined relationship [images] on model [App\Models\Product].
+
+> $p = Product::find(130)
+= App\Models\Product {#7238
+    id: 130,
+    category_id: 1,
+    subcategory_id: 2,
+    name: "non",
+    sku: "202332dolor",
+    details: "Voluptatem ratione ducimus magnam eos. Ducimus omnis beatae deserunt harum. Repudiandae consectetur animi odit ea dolorem sed consequatur. Sed dolorem dolorem dolore sit non et labore.",
+    price: 80.0,
+    quantity: 5,
+    status: 1,
+    hot: 0,
+    new: 1,
+    created_at: "2023-07-10 09:48:34",
+    updated_at: "2023-07-10 09:48:34",
+  }
+
+> $p->name = "viewsonic";
+= "viewsonic"
+
+> $p->save();
+= true
+
+> $p
+= App\Models\Product {#7238
+    id: 130,
+    category_id: 1,
+    subcategory_id: 2,
+    name: "viewsonic",
+    sku: "202332dolor",
+    details: "Voluptatem ratione ducimus magnam eos. Ducimus omnis beatae deserunt harum. Repudiandae consectetur animi odit ea dolorem sed consequatur. Sed dolorem dolorem dolore sit non et labore.",
+    price: 80.0,
+    quantity: 5,
+    status: 1,
+    hot: 0,
+    new: 1,
+    created_at: "2023-07-10 09:48:34",
+    updated_at: "2023-07-10 10:02:37",
+  }
+
+> exit;
+
+   INFO  Goodbye.
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan make:model Wife -m
+
+   INFO  Model [D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class\app/Models/Wife.php] created successfully.
+
+   INFO  Migration [D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class\database\migrations/2023_07_10_101013_create_wives_table.php] created successfully.
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>

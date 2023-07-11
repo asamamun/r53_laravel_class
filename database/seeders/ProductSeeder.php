@@ -55,7 +55,7 @@ class ProductSeeder extends Seeder
                 'quantity' => $this->faker->randomDigit,
             ]);
         } */
-        Product::factory()->count(30)->create();
+        Product::factory()->count(100)->create();
     
         
     }

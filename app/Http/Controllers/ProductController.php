@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -14,12 +15,21 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = DB::table("products")
+        /* $products = DB::table("products")
         ->where('price', '<', 2 )
         ->orWhere('price', '>', 70 )
         ->inRandomOrder()
-        ->get();
-        return view("products.all")->with('products', $products);
+        ->get(); */
+        // $products = Product::paginate(20);
+        $cat = Category::with("subcategories")->get();
+        // dd($cat);
+        $products = Product::with('images')->withTrashed()->paginate(20);
+        // $products = Product::onlyTrashed()->paginate(20);
+        // dd($products);
+        // dd($products->toJson());
+        return view("products.all")
+        ->with('products', $products)
+        ->with('categories', $cat);
     }
 
     /**
@@ -67,6 +77,14 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        Product::destroy($product->id);
+        return redirect()->back()->with("warning","Deleted Product Successfully");
+    }
+
+    public function restore($id){
+        $product = Product::onlyTrashed()->find($id);
+       if($product->restore()){
+        return redirect()->back()->with("success","Product Restored Successfully");
+       }
     }
 }
