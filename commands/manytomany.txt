@@ -1,0 +1,236 @@
+php artisan make:migration add_description_to_actor_film_table
+
+
+
+Microsoft Windows [Version 10.0.19045.3086]
+(c) Microsoft Corporation. All rights reserved.
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan make:model Actor -mcr
+
+   INFO  Model [D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class\app/Models/Actor.php] created successfully.
+
+   INFO  Migration [D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class\database\migrations/2023_07_12_165504_create_actors_table.php] created successfully.
+
+   INFO  Controller [D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class\app/Http/Controllers/ActorController.php] created successfully.
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan make:model Film -mcr
+
+   INFO  Model [D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class\app/Models/Film.php] created successfully.
+
+   INFO  Migration [D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class\database\migrations/2023_07_12_165520_create_films_table.php] created successfully.
+
+   INFO  Controller [D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class\app/Http/Controllers/FilmController.php] created successfully.
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan migrate
+
+   INFO  Running migrations.
+
+  2023_07_12_165504_create_actors_table .................... 358ms DONE
+  2023_07_12_165520_create_films_table ..................... 279ms DONE
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan make:migration add_description_to_category_todolist_table
+
+   INFO  Migration [D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class\database\migrations/2023_07_12_170341_add_description_to_category_todolist_table.php] created successfully.
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan make:migration add_description_to_actor_film_table
+
+   INFO  Migration [D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class\database\migrations/2023_07_12_170426_add_description_to_actor_film_table.php] created successfully.
+
+
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan migrate
+
+   INFO  Running migrations.
+
+  2023_07_12_170426_add_description_to_actor_film_table .. 2,026ms DONE
+
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan tinker
+Psy Shell v0.11.18 (PHP 8.1.10 — cli) by Justin Hileman
+> use App\Models\Actor;
+> $a = Actor::with('films')->find(1)
+= App\Models\Actor {#7261
+    id: 1,
+    first_name: "Hero",
+    last_name: "Alam",
+    bio: "sdaf dsaf",
+    created_at: null,
+    updated_at: null,
+    films: Illuminate\Database\Eloquent\Collection {#7268
+      all: [
+        App\Models\Film {#7272
+          id: 1,
+          title: "mar chakka",
+          details: "a sadfds fdsfdf ",
+          genre: "action",
+          rating: "5",
+          year: "2020",
+          created_at: null,
+          updated_at: null,
+          pivot: Illuminate\Database\Eloquent\Relations\Pivot {#7270
+            actor_id: 1,
+            film_id: 1,
+          },
+        },
+        App\Models\Film {#7273
+          id: 2,
+          title: "Dui bodhu Eak sami",
+          details: "asdf sdafsda fsdf",
+          genre: "Comedy, Horror",
+          rating: "6",
+          year: "2021",
+          created_at: null,
+          updated_at: null,
+          pivot: Illuminate\Database\Eloquent\Relations\Pivot {#7269
+            actor_id: 1,
+            film_id: 2,
+          },
+        },
+      ],
+    },
+  }
+
+> $a = Actor::with('films')->find(2)
+= App\Models\Actor {#7284
+    id: 2,
+    first_name: "Zayed",
+    last_name: "khan",
+    bio: "sdafndsfjds f dsf dsf",
+    created_at: null,
+    updated_at: null,
+    films: Illuminate\Database\Eloquent\Collection {#7266
+      all: [
+        App\Models\Film {#7286
+          id: 2,
+          title: "Dui bodhu Eak sami",
+          details: "asdf sdafsda fsdf",
+          genre: "Comedy, Horror",
+          rating: "6",
+          year: "2021",
+          created_at: null,
+          updated_at: null,
+          pivot: Illuminate\Database\Eloquent\Relations\Pivot {#7264
+            actor_id: 2,
+            film_id: 2,
+          },
+        },
+      ],
+    },
+  }
+
+> use App\Models\Film;
+> $f = Film::with('actors')->find(1);
+= App\Models\Film {#7276
+    id: 1,
+    title: "mar chakka",
+    details: "a sadfds fdsfdf ",
+    genre: "action",
+    rating: "5",
+    year: "2020",
+    created_at: null,
+    updated_at: null,
+    actors: Illuminate\Database\Eloquent\Collection {#7291
+      all: [
+        App\Models\Actor {#7293
+          id: 1,
+          first_name: "Hero",
+          last_name: "Alam",
+          bio: "sdaf dsaf",
+          created_at: null,
+          updated_at: null,
+          pivot: Illuminate\Database\Eloquent\Relations\Pivot {#7292
+            film_id: 1,
+            actor_id: 1,
+          },
+        },
+      ],
+    },
+  }
+
+> $f = Film::with('actors')->find(2);
+= App\Models\Film {#7254
+    id: 2,
+    title: "Dui bodhu Eak sami",
+    details: "asdf sdafsda fsdf",
+    genre: "Comedy, Horror",
+    rating: "6",
+    year: "2021",
+    created_at: null,
+    updated_at: null,
+    actors: Illuminate\Database\Eloquent\Collection {#7303
+      all: [
+        App\Models\Actor {#7307
+          id: 1,
+          first_name: "Hero",
+          last_name: "Alam",
+          bio: "sdaf dsaf",
+          created_at: null,
+          updated_at: null,
+          pivot: Illuminate\Database\Eloquent\Relations\Pivot {#7305
+            film_id: 2,
+            actor_id: 1,
+          },
+        },
+        App\Models\Actor {#7308
+          id: 2,
+          first_name: "Zayed",
+          last_name: "khan",
+          bio: "sdafndsfjds f dsf dsf",
+          created_at: null,
+          updated_at: null,
+          pivot: Illuminate\Database\Eloquent\Relations\Pivot {#7304
+            film_id: 2,
+            actor_id: 2,
+          },
+        },
+      ],
+    },
+  }
+
+>  
+Microsoft Windows [Version 10.0.19045.3086]
+(c) Microsoft Corporation. All rights reserved.
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan tinker
+Psy Shell v0.11.18 (PHP 8.1.10 — cli) by Justin Hileman
+> use App\Models\Film;
+> $f = Film::find(4);
+= App\Models\Film {#7258
+    id: 4,
+    title: "Titanic",
+    details: " asdfd fdasf dasffd",
+    genre: "Tragedy, Romance, Adventire",
+    rating: "7",
+    year: "1943",
+    created_at: "2023-07-12 18:10:08",
+    updated_at: null,
+  }
+
+> $f->actors()->attach([1,5]);
+= null
+
+> $f->actors()->detach([5]);
+= 1
+
+> $f->actors()->attach([6]);
+= null
+
+> $f->actors()->sync([2,4]);
+= [
+    "attached" => [
+      2,
+      4,
+    ],
+    "detached" => [
+      1,
+      6,
+    ],
+    "updated" => [],
+  ]
+
+>  

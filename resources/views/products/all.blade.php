@@ -24,6 +24,8 @@
 <ol>
 @forelse ($products as $p)
     <li class="{{$p->deleted_at?"bg-warning":""}}""> 
+        <button>Category: {{$p->category->name}}</button>
+        <button>SubCategory: {{$p->subcategory->name}}</button> <br>
         id: {{$p->id}}, Name: {{$p->name}},Sku :{{$p->sku}} , Price: {{$p->price}}, Vat: {{$p->vat}}
     {{-- DELETE --}}
     <form onsubmit="return confirm('Are you sure?')" action="{{route('product.destroy',$p->id)}}" method="post">
@@ -55,7 +57,13 @@
         No Image Available
       </div>
     @endforelse
-    
+    <hr>
+    <h3>User Comments</h3>
+    @forelse ($p->comments as $comment)
+        <h6>{{$comment->user->name}} commented: {{$comment->message}}</h6>
+    @empty
+        <h6>No comments available</h6>
+    @endforelse
     </li>
     @empty
     <li>No Product available</li> 

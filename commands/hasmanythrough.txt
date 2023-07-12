@@ -1,0 +1,4 @@
+countries (id,name)
+users(id,country_id, name,email)
+posts(id,title,description,user_id)
+

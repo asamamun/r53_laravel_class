@@ -1,0 +1,211 @@
+Microsoft Windows [Version 10.0.19045.3086]
+(c) Microsoft Corporation. All rights reserved.
+
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan tinker
+Psy Shell v0.11.18 (PHP 8.1.10 — cli) by Justin Hileman
+> use App\Models\user;
+> $u = User::find(1);
+= App\Models\User {#7258
+    id: 1,
+    name: "admin",
+    email: "admin@gmail.com",
+    email_verified_at: null,
+    #password: "$2y$10$YI3/Nmz6EffYggvm1Xgc5.unhLxedp.CYmjuw3L78/YitA53.ywoG",
+    role: 1,
+    #remember_token: null,
+    created_at: "2023-07-04 10:14:58",
+    updated_at: "2023-07-04 10:14:58",
+  }
+
+> $u = User::with('profile')->find(1);
+= App\Models\User {#7247
+    id: 1,
+    name: "admin",
+    email: "admin@gmail.com",
+    email_verified_at: null,
+    #password: "$2y$10$YI3/Nmz6EffYggvm1Xgc5.unhLxedp.CYmjuw3L78/YitA53.ywoG",
+    role: 1,
+    #remember_token: null,
+    created_at: "2023-07-04 10:14:58",
+    updated_at: "2023-07-04 10:14:58",
+    profile: App\Models\Profile {#7270
+      id: 1,
+      user_id: 1,
+      phone: "123456789",
+      father_name: null,
+      mother_name: null,
+      addres1: null,
+      addres2: null,
+      bg: null,
+      fb: null,
+      tw: null,
+      th: null,
+      created_at: "2023-07-11 18:32:30",
+      updated_at: "2023-07-11 18:32:30",
+    },
+  }
+
+> $u->profile->phone;
+= "123456789"
+
+> $u->profile->fb;
+= null
+
+> use App\Models\Product;
+> $p = Product::with('images')->find(10);
+= App\Models\Product {#7289
+    id: 10,
+    category_id: 1,
+    subcategory_id: 1,
+    name: "adipisci",
+    sku: "202306aliquid",
+    details: "Perspiciatis nisi sapiente quod provident. Alias quod dolor provident aperiam sapiente dolores eum. Incidunt cupiditate pariatur perspiciatis aut odit unde.",
+    price: 0.0,
+    quantity: 0,
+    status: 1,
+    hot: 0,
+    new: 1,
+    created_at: "2023-07-11 15:55:07",
+    updated_at: "2023-07-11 15:55:07",
+    deleted_at: null,
+    images: Illuminate\Database\Eloquent\Collection {#7290
+      all: [
+        App\Models\Image {#7295
+          id: 46,
+          product_id: 10,
+          name: "https://picsum.photos/id/499/640/480",
+          created_at: null,
+          updated_at: null,
+        },
+        App\Models\Image {#7296
+          id: 47,
+          product_id: 10,
+          name: "https://picsum.photos/id/317/640/480",
+          created_at: null,
+          updated_at: null,
+        },
+        App\Models\Image {#7297
+          id: 48,
+          product_id: 10,
+          name: "https://picsum.photos/id/900/640/480",
+          created_at: null,
+          updated_at: null,
+        },
+        App\Models\Image {#7298
+          id: 49,
+          product_id: 10,
+          name: "https://picsum.photos/id/346/640/480",
+          created_at: null,
+          updated_at: null,
+        },
+        App\Models\Image {#7299
+          id: 50,
+          product_id: 10,
+          name: "https://picsum.photos/id/631/640/480",
+          created_at: null,
+          updated_at: null,
+        },
+      ],
+    },
+  }
+
+> foreach($p->images as $img){echo $img->name;}
+https://picsum.photos/id/499/640/480https://picsum.photos/id/317/640/480https://picsum.photos/id/900/640/480https://picsum.photos/id/346/640/480https://picsum.photos/id/631/640/480⏎
+> foreach($p->images as $k=>$img){echo $k;}
+01234⏎
+> foreach($p->images as $k=>$img){if($k>2)break;echo $img->name;}
+https://picsum.photos/id/499/640/480https://picsum.photos/id/317/640/480https://picsum.photos/id/900/640/480⏎
+> use App\Models\Profile;
+> $p = Profile::where("phone","123456789")->get();
+= Illuminate\Database\Eloquent\Collection {#7302
+    all: [
+      App\Models\Profile {#7282
+        id: 1,
+        user_id: 1,
+        phone: "123456789",
+        father_name: null,
+        mother_name: null,
+        addres1: null,
+        addres2: null,
+        bg: null,
+        fb: null,
+        tw: null,
+        th: null,
+        created_at: "2023-07-11 18:32:30",
+        updated_at: "2023-07-11 18:32:30",
+      },
+    ],
+  }
+
+> $p = Profile::with('user')->where("phone","123456789")->get();
+= Illuminate\Database\Eloquent\Collection {#7296
+    all: [
+      App\Models\Profile {#7297
+        id: 1,
+        user_id: 1,
+        phone: "123456789",
+        father_name: null,
+        mother_name: null,
+        addres1: null,
+        addres2: null,
+        bg: null,
+        fb: null,
+        tw: null,
+        th: null,
+        created_at: "2023-07-11 18:32:30",
+        updated_at: "2023-07-11 18:32:30",
+        user: App\Models\User {#7248
+          id: 1,
+          name: "admin",
+          email: "admin@gmail.com",
+          email_verified_at: null,
+          #password: "$2y$10$YI3/Nmz6EffYggvm1Xgc5.unhLxedp.CYmjuw3L78/YitA53.ywoG",
+          role: 1,
+          #remember_token: null,
+          created_at: "2023-07-04 10:14:58",
+          updated_at: "2023-07-04 10:14:58",
+        },
+      },
+    ],
+  }
+
+> $p->user->email;
+
+   Exception  Property [user] does not exist on this collection instance.
+
+> $p->user()->email;
+
+   BadMethodCallException  Method Illuminate\Database\Eloquent\Collection::user does not exist.
+
+> $p = Profile::with('user')->where("phone","123456789")->first();
+= App\Models\Profile {#7286
+    id: 1,
+    user_id: 1,
+    phone: "123456789",
+    father_name: null,
+    mother_name: null,
+    addres1: null,
+    addres2: null,
+    bg: null,
+    fb: null,
+    tw: null,
+    th: null,
+    created_at: "2023-07-11 18:32:30",
+    updated_at: "2023-07-11 18:32:30",
+    user: App\Models\User {#7310
+      id: 1,
+      name: "admin",
+      email: "admin@gmail.com",
+      email_verified_at: null,
+      #password: "$2y$10$YI3/Nmz6EffYggvm1Xgc5.unhLxedp.CYmjuw3L78/YitA53.ywoG",
+      role: 1,
+      #remember_token: null,
+      created_at: "2023-07-04 10:14:58",
+      updated_at: "2023-07-04 10:14:58",
+    },
+  }
+
+> $p->user->email;
+= "admin@gmail.com"
+
+>  

@@ -21,9 +21,10 @@ class ProductController extends Controller
         ->inRandomOrder()
         ->get(); */
         // $products = Product::paginate(20);
-        $cat = Category::with("subcategories")->get();
+        $cat = Category::with("subcategories")->has('products')->get();
         // dd($cat);
-        $products = Product::with('images')->withTrashed()->paginate(20);
+        $products = Product::with(['category','subcategory','images','comments.user'])->withTrashed()->paginate(20);
+        // $products = Product::with(['category','subcategory','images','comments.user'])->find(1);
         // $products = Product::onlyTrashed()->paginate(20);
         // dd($products);
         // dd($products->toJson());
