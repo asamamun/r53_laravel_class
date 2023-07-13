@@ -6,7 +6,7 @@
 @forelse ($categories as $c)
 <div class="card col-4 my-3">
     <div class="card-header">
-      {{$c->name}}
+      {{$c->name}}({{$c->products_count}})
     </div>
     <ul class="list-group list-group-flush">
     @forelse ($c->subcategories as $sc)
@@ -51,7 +51,7 @@
     <hr>
     <h1>Images</h1>
     @forelse ($p->images as $image)
-       <img src="{{$image->name}}" width="100px" alt=""> 
+       <img src="{{$image->name}}" width="100px" alt="" loading="lazy"> 
     @empty
     <div class="alert alert-warning" role="alert">
         No Image Available

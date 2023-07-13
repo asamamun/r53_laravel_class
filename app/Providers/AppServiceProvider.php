@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use Exception;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Log;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +31,15 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('ifGuest', function () {
             return "<?php if (auth()->guest()): ?>";
             });
+        //Eloquent Events
+        User::creating(function ($user) {
+            try {
+                //message broadcast type works
+            Log::info("new user ". $user->name." created");
+            } catch (Exception $e) {
+            Log::error('Failed adding contact to ThirdPartyService; canceled.');
+            return false; // Cancels Eloquent create()
+            } 
+        });   
     }
 }

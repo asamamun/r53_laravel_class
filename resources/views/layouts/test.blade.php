@@ -3,7 +3,11 @@
         <title>{{ $title ?? 'Todo Manager' }}</title>
         {{-- CSRF --}}
         <meta name="csrf-token" content="<?php echo csrf_token(); ?>" id="token">
-        <link rel="stylesheet" href="{{ asset('build/assets/css/bootstrap.min.css') }}">
+        
+        <link rel="stylesheet" href="{{ asset('build/assets/bootstrap.min-b0d79a03.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/assets/app-58b9f27f.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/assets/product-b8115708.css') }}">
+
         @yield('css')
     </head>
     <body>
@@ -24,7 +28,8 @@
         
     
     </div>
-    <script src="{{ asset("build/assets/js/bootstrap.bundle.min.js") }}"></script>
+    <script src="{{ asset("build/assets/app-4a08c204.js") }}"></script>
+    <script src="{{ asset("build/assets/bootstrap.bundle.min-9f2301bd.js") }}"></script>
     @yield('script')
     </body>
 </html>
