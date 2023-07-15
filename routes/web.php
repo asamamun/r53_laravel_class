@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +56,7 @@ Route::middleware('auth')->group(function () {
     });
 */
 Route::get('/', 'App\Http\Controllers\WebsiteController@home');
+Route::get("/getsubcat/{id}",[SubcategoryController::class, 'getSubcat']);
 //Laravel 5.7 also introduced the “tuple” syntax 
 // route::get('/', [WebsiteController::class, 'home']);
 // Route::get('/about', [WebsiteController::class, 'about'])->name('about');

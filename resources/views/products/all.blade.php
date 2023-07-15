@@ -1,7 +1,12 @@
 @extends('layouts.test')
 
 @section('content')
-<h1>categories</h1>
+<div class="d-flex justify-content-between">
+    <h3>categories</h3>
+    <a class="btn btn-outline-primary" href="{{route("product.create")}}"> + </a>
+
+</div>
+
 <div class="row">
 @forelse ($categories as $c)
 <div class="card col-4 my-3">
@@ -51,7 +56,8 @@
     <hr>
     <h1>Images</h1>
     @forelse ($p->images as $image)
-       <img src="{{$image->name}}" width="100px" alt="" loading="lazy"> 
+    <img src="{{asset('storage/'.$image->name)}}" width="100px" alt="" loading="lazy"> 
+       {{-- old code for picsum images <img src="{{$image->name}}" width="100px" alt="" loading="lazy">  --}}
     @empty
     <div class="alert alert-warning" role="alert">
         No Image Available

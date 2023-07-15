@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
+use App\Models\Image;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -23,7 +24,7 @@ class ProductController extends Controller
         // $products = Product::paginate(20);
         $cat = Category::with("subcategories")->withCount('products')->has('products')->get();
         // dd($cat);
-        $products = Product::with(['category','images','comments.user'])->withTrashed()->paginate(20);
+        $products = Product::with(['category','images','comments.user'])->withTrashed()->orderByDesc('created_at')->paginate(20);
         if(true)$products->loadMissing("subcategory");
         // $products = Product::with(['category','subcategory','images','comments.user'])->find(1);
         // $products = Product::onlyTrashed()->paginate(20);
@@ -39,7 +40,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $cats = Category::pluck('name', 'id');
+        return view("products.create")->with("categories", $cats);
     }
 
     /**
@@ -47,7 +49,30 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $product = Product::create($request->all()['Product']);
+        if($product){
+           //
+        //    dd($request);
+           if ($request->hasFile('images')) {
+            $files = $request->file('images');
+            
+            foreach ($files as $file) {
+                // Save or process each file as needed
+                $loc = $file->store('uploads');
+                $i = new Image();
+                $i->name = $loc;
+                $product->images()->save($i);
+            }
+            return redirect()->route("product.create")->with("success","Product saved successfully. ID is ".$product->id );
+        } 
+        else{
+            echo "image not available";
+        }
+           // 
+        }
+        else{
+            echo "add failed";
+        }
     }
 
     /**
