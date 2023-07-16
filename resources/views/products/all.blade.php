@@ -32,8 +32,12 @@
         <button>Category: {{$p->category->name}}</button>
         <button>SubCategory: {{$p->subcategory->name}}</button> <br>
         id: {{$p->id}}, Name: {{$p->name}},Sku :{{$p->sku}} , Price: {{$p->price}}, Vat: {{$p->vat}}
+        <hr>
+    {{-- edit --}}
+        <a href="{{route("product.edit",$p->id)}}" class="btn btn-primary">EDIT</a>
+    {{-- edit --}}
     {{-- DELETE --}}
-    <form onsubmit="return confirm('Are you sure?')" action="{{route('product.destroy',$p->id)}}" method="post">
+    <form class="d-inline" onsubmit="return confirm('Are you sure?')" action="{{route('product.destroy',$p->id)}}" method="post">
         @csrf
         @method('delete')
         <input type="submit" class="btn btn-danger" name="delete" value="Delete">
@@ -46,12 +50,13 @@
         <input type="submit" class="btn btn-success" name="delete" value="Restore">
         </form>
     {{-- restore END --}} 
-       {{-- restore --}}
+
+       {{-- delete --}}
     <form onsubmit="return confirm('Are you sure?')" action="{{route('product.restore',$p->id)}}" method="post">
         @csrf        
         <input type="submit" class="btn btn-danger" name="delete" value="Permanent delete">
         </form>
-    {{-- restore END --}} 
+    {{-- delete END --}} 
     @endif
     <hr>
     <h1>Images</h1>

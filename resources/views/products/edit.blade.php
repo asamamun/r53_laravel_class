@@ -1,16 +1,16 @@
 @extends('layouts.test')
 
 @section('content')
-<h1>Product Add Form</h1>
+<h1>Product Edit Form</h1>
 <div class="product-form">
 
     {{-- <form action="{{route("product.store")}}" method="post" enctype="multipart/form-data">
 @csrf --}}
-{!! Form::open(['route' => 'product.store','files' => true]) !!}
-
+{!! Form::model($product,['route' => ['product.update',$product->id],'files' => true]) !!}
+@method("put")
 @include('products.form')    
     <div class="form-group">
-    <button type="submit" class="btn btn-success">Save</button>    
+    <button type="submit" class="btn btn-success">Update</button>    
     </div>
 {!! Form::close() !!}
 </div>
@@ -44,7 +44,14 @@
 
 
        })
+
+       //
+       $(".pimage").click(function(){
+            alert($(this).data('id'));
+        })
+       //
     });
 </script>
     
 @endsection
+

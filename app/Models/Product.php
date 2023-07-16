@@ -34,7 +34,7 @@ class Product extends Model
     }
     public function getPriceAttribute($value)
     {
-        return $value . " taka";
+        return $value;
     }
     public function getVatAttribute()
     {

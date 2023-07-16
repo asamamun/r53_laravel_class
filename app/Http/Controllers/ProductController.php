@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Image;
+use App\Models\Subcategory;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -41,7 +42,9 @@ class ProductController extends Controller
     public function create()
     {
         $cats = Category::pluck('name', 'id');
-        return view("products.create")->with("categories", $cats);
+        return view("products.create")
+        ->with("categories", $cats)
+        ->with("subcategories", []);
     }
 
     /**
@@ -49,7 +52,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $product = Product::create($request->all()['Product']);
+        $product = Product::create($request->all());
         if($product){
            //
         //    dd($request);
@@ -88,7 +91,13 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        
+        $cats = Category::pluck('name', 'id');
+        $subcats = Subcategory::where('category_id',$product->category_id)->pluck('name', 'id');
+        $product = $product->loadMissing("category");
+        // $product = $product;
+        // dd($product);
+        return view("products.edit", ["product" => $product,'categories'=>$cats,'subcategories'=>$subcats]);
     }
 
     /**
@@ -96,7 +105,37 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        //dd($product);
+        $product->category_id = $request->category_id;
+        $product->subcategory_id = $request->subcategory_id;
+        $product->name = $request->name;
+        $product->sku = $request->sku;
+        $product->details = $request->details;
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
+        $product->status = $request->status;
+        $product->hot = $request->hot;
+        $product->new = $request->new;
+        $product->save();
+        // file upload
+        if ($request->hasFile('images')) {
+            $files = $request->file('images');
+            
+            foreach ($files as $file) {
+                // Save or process each file as needed
+                $loc = $file->store('uploads');
+                $i = new Image();
+                $i->name = $loc;
+                $product->images()->save($i);
+            }
+            return redirect()->route("product.index")->with("success","Product update successfully. ID is ".$product->id );
+        } 
+        else{
+            echo "image not available";
+        } 
+        // 
+
+
     }
 
     /**
