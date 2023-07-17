@@ -57,6 +57,8 @@ Route::middleware('auth')->group(function () {
 */
 Route::get('/', 'App\Http\Controllers\WebsiteController@home');
 Route::get("/getsubcat/{id}",[SubcategoryController::class, 'getSubcat']);
+//request segments
+Route::get('/test/segment/idb/bisew', [ProductController::class, 'testsegment']);
 //Laravel 5.7 also introduced the “tuple” syntax 
 // route::get('/', [WebsiteController::class, 'home']);
 // Route::get('/about', [WebsiteController::class, 'about'])->name('about');
@@ -79,6 +81,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/products', [WebsiteController::class, 'products']);
     Route::get('/services', [WebsiteController::class, 'services']);
     Route::get('/testblade', [WebsiteController::class, 'testblade']);
+    Route::post('/del_img', [ProductController::class, 'delete_img']);
+
     Route::post('/productrestore/{id}', [ProductController::class, 'restore'])->name('product.restore');
     Route::resources([
         'category' => CategoryController::class,

@@ -35,11 +35,11 @@
         <div class="form-label">Images</div>
         <input type="file" name="images[]" id="images" class="form-control" required multiple>
         <hr>
-        @if ($product?->images)
+        @if ($product && $product->images)
             @forelse ($product?->images as $img)
-               <div class="d-inline-block position-relative">
+               <div class="d-inline-block position-relative p-3">
                 <img src="{{asset('storage/'.$img->name)}}" width="100px" alt="" loading="lazy"> 
-                <span data-id="{{$img->id}}"  class="pimage position-absolute left-100 top-0 translate-middle badge rounded-pill bg-danger">&times;</span>  
+                <span data-id="{{$img->id}}" style="right:-10px;top:15px"  class="pimage position-absolute translate-middle badge rounded-pill bg-danger" title="delete image">&times;</span>  
             </div> 
             @empty
                 

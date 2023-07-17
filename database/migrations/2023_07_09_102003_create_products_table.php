@@ -21,7 +21,7 @@ return new class extends Migration
 
             $table->string("name");
             $table->string("sku")->unique();
-            $table->string("details");
+            $table->text("details");
             $table->float("price",10,2);
             $table->integer("quantity")->unsigned();
             $table->tinyInteger("status")->default("1");

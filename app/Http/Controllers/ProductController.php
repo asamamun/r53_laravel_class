@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\Image;
 use App\Models\Subcategory;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -43,6 +45,7 @@ class ProductController extends Controller
     {
         $cats = Category::pluck('name', 'id');
         return view("products.create")
+        ->with("product", null)
         ->with("categories", $cats)
         ->with("subcategories", []);
     }
@@ -65,6 +68,7 @@ class ProductController extends Controller
                 $i = new Image();
                 $i->name = $loc;
                 $product->images()->save($i);
+                //resize the images and store with same name. max resolution can be 1024px
             }
             return redirect()->route("product.create")->with("success","Product saved successfully. ID is ".$product->id );
         } 
@@ -152,5 +156,23 @@ class ProductController extends Controller
        if($product->restore()){
         return redirect()->back()->with("success","Product Restored Successfully");
        }
+    }
+
+    public function delete_img(Request $request){
+       // return response()->json($request->all());
+       $img = Image::find($request->id);
+       if($img){
+        //physically delete the file
+        Storage::delete($img->name);
+        //delete the file from images table
+        $img->delete();
+        return response()->json(['type'=>"info","message"=>"Successfully deleted"]);
+       }
+       else{
+        return response()->json(['type'=>"warning","message"=>"Error Deleting Images"]);
+       }
+    }
+    public function testsegment(Request $request){
+        dd($request->segments());
     }
 }

@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="{{ asset('staticassets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('build/assets/app-58b9f27f.css') }}">
         <link rel="stylesheet" href="{{ asset('build/assets/product-b8115708.css') }}">
-
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         @yield('css')
     </head>
     <body>

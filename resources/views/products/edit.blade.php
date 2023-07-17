@@ -1,5 +1,12 @@
 @extends('layouts.test')
 
+@section('css')
+<style>
+    .pimage:hover{ cursor: pointer;}
+</style>
+    
+@endsection
+
 @section('content')
 <h1>Product Edit Form</h1>
 <div class="product-form">
@@ -47,7 +54,36 @@
 
        //
        $(".pimage").click(function(){
-            alert($(this).data('id'));
+        $t = $(this);
+            // alert($(this).data('id'));
+            $.ajax({
+                type: "post",
+                url: "{{url('del_img')}}",
+                data: {id:$t.data('id')},
+                dataType: "json",
+                success: function (response) {
+                    if(response.type="info"){
+                        Swal.fire(
+  'Message!',
+  response.message,
+  response.type
+).then(function(){
+location.reload();
+})  
+                    }
+                    else{
+                        Swal.fire(
+  'Message!',
+  response.message,
+  response.type
+)  
+                    }
+                    //console.log(response);
+                    // return;
+   
+                }
+            });
+
         })
        //
     });

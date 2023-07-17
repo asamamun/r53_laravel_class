@@ -27,6 +27,7 @@
 @endforelse
 </div>
 <ol>
+    <h1>Products</h1>
 @forelse ($products as $p)
     <li class="{{$p->deleted_at?"bg-warning":""}}""> 
         <button>Category: {{$p->category->name}}</button>
