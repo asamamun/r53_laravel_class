@@ -11,6 +11,7 @@ use App\Models\Subcategory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as ImageI;
 
 class ProductController extends Controller
 {
@@ -43,6 +44,10 @@ class ProductController extends Controller
      */
     public function create()
     {
+        //file:///D:/xampp8110/htdocs/Round53/laravel/r53_laravel_class/storage/app/public/logo.png
+        //
+        // echo storage_path("app/public").'/logo.png';
+        // exit;
         $cats = Category::pluck('name', 'id');
         return view("products.create")
         ->with("product", null)
@@ -68,9 +73,17 @@ class ProductController extends Controller
                 $i = new Image();
                 $i->name = $loc;
                 $product->images()->save($i);
+                //echo Storage::path($loc) . "<br>";
                 //resize the images and store with same name. max resolution can be 1024px
+                //watermark
+                    //image intervention
+                    $image = ImageI::make(Storage::path($loc))->resize(800, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })->insert(storage_path("app/public").'/logo.png','center')->save(Storage::path($loc));
+                    //watermark end
             }
-            return redirect()->route("product.create")->with("success","Product saved successfully. ID is ".$product->id );
+             return redirect()->route("product.create")->with("success","Product saved successfully. ID is ".$product->id );
         } 
         else{
             echo "image not available";

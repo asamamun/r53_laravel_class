@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ProductController;
+use App\Models\Subcategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +87,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/productrestore/{id}', [ProductController::class, 'restore'])->name('product.restore');
     Route::resources([
         'category' => CategoryController::class,
+        'subcategory' => SubcategoryController::class,
         'product' => ProductController::class,
     ]);
 });

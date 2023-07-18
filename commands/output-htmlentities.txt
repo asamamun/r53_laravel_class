@@ -1,0 +1,2 @@
+{{ "<script>alert(5)</script>"}} will output exactly <script>alert(5)</script> because it is encoded by htmlentities so code cannot be run
+{!! "<script>alert(5)</script>" !!} will tun the alert message bcs no encoding done and the same code sent to the client browser and browser can run the code.

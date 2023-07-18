@@ -4,8 +4,10 @@
 <div class="d-flex justify-content-between">
     <h3>categories</h3>
     <a class="btn btn-outline-primary" href="{{route("product.create")}}"> + </a>
-
 </div>
+<hr><hr>
+
+<hr><hr>
 
 <div class="row">
 @forelse ($categories as $c)
@@ -62,7 +64,9 @@
     <hr>
     <h1>Images</h1>
     @forelse ($p->images as $image)
+    <a href="{{asset('storage/'.$image->name)}}" data-lightbox="product-{{$p->id}}">
     <img src="{{asset('storage/'.$image->name)}}" width="100px" alt="" loading="lazy"> 
+    </a>
        {{-- old code for picsum images <img src="{{$image->name}}" width="100px" alt="" loading="lazy">  --}}
     @empty
     <div class="alert alert-warning" role="alert">

@@ -8,8 +8,9 @@
 </div>
 <div style="float: right">
 @if (Auth::check())
+<label for="">Welcome {{Auth::user()->name}}</label>
 <!-- Authentication -->
-<form method="POST" action="{{ route('logout') }}">
+<form class="d-inline" method="POST" action="{{ route('logout') }}">
     @csrf
 
     <x-responsive-nav-link :href="route('logout')"
