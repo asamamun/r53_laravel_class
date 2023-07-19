@@ -1,0 +1,26 @@
+Step 1: 
+D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class>php artisan make:middleware IsAdmin
+
+   INFO  Middleware [D:\xampp8110\htdocs\Round53\laravel\r53_laravel_class\app/Http/Middleware/IsAdmin.php] created successfully.
+
+Step 2:  
+   In IsAdmin.php middleware edit handle method to this:
+   public function handle(Request $request, Closure $next): Response
+    {
+        if(Auth::user()->role != "2"){
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+        return $next($request);
+    }
+
+Step 3: 
+ in app/http/kernel.php add:
+ 'admin' => \App\Http\Middleware\IsAdmin::class,  
+
+ in $middlewareAliases array.
+
+ Step 4: 
+  now in web.php you can use middleware("admin") to check admin like this:
+
+  Route::middleware("admin)->get('/test/segment/idb/bisew', [ProductController::class, 'testsegment']);
+

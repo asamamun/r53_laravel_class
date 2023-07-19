@@ -6,10 +6,10 @@
 @section('content')
     <h1>welcome to about</h1>
     <a href="{{route('category.index')}}">Category Index</a> | 
-    <a href="{{url('category/create')}}">Create Category</a> | 
+    <a href="{{url('admin/category/create')}}">Create Category</a> | 
     <a href="{{route('category.create')}}">Create Category</a> | 
     <a href="{{route('category.show',1)}}">Category 1</a> | 
-    <a href="{{url('category/'.'1')}}">Category 1</a> | 
+    <a href="{{url('admin/category/'.'1')}}">Category 1</a> | 
     <br>
     <a href="{{URL::route('invitations', ['invitation' => 12345, 'answer' => 'yes']);}}">invitation</a>
 <br>

@@ -42,6 +42,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::prefix("admin")->middleware("admin")->group(function(){
+    Route::resources([
+        'category' => CategoryController::class,
+        'subcategory' => SubcategoryController::class,
+        'product' => ProductController::class,
+    ]);
+    
+});
+
 //website
 /* Route::get('/', function () {
     return view('welcome');
@@ -85,11 +94,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/del_img', [ProductController::class, 'delete_img']);
 
     Route::post('/productrestore/{id}', [ProductController::class, 'restore'])->name('product.restore');
-    Route::resources([
-        'category' => CategoryController::class,
-        'subcategory' => SubcategoryController::class,
-        'product' => ProductController::class,
-    ]);
+    
 });
 
 
