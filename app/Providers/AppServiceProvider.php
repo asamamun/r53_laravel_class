@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\MyClass\Idb;
 use Exception;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
@@ -16,7 +17,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind('App\MyClass\Idb', function ($app) {
+            return new Idb();
+        });
+/*         $this->app->bind(Idb::class, function ($app) {
+            return new Idb(
+            $app->make(Foo::class),
+            $app->make(Bar::class),
+            );
+            }); */
     }
 
     /**

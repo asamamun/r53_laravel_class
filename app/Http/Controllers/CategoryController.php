@@ -40,8 +40,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        dd($category);
         // echo "show called";
-        dd(Category::find($category)->toArray());
+        //dd(Category::find($category)->toArray());
     }
 
     /**

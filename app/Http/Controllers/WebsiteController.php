@@ -3,10 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\MyClass\Idb;
 use Illuminate\Http\Request;
+;
 
 class WebsiteController extends Controller
 {
+    public function di(){
+        // dd($this->app);
+        // dd(app());
+        //$i = new Idb();
+        // Idb::testidb();
+        return view("di");
+    }
+/*     public function di(Idb $idb){
+        // Log::error(("error!!"));
+        $idb::testidb();
+        $l = app("Log");
+        $l::info("Welcome to info");
+
+        //$foo = new Foo();
+        //dd($foo);
+        // dd(app());        
+        return view("di");
+    } */
     public function home(){
         $colors = [
             "#000000" => "Black",

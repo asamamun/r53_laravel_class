@@ -100,7 +100,13 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+
+        // $p = Product::with(["images","category","subcategory"])->find($product->id);
+        // dd($p);
+        // dd($product);
+        $product->loadMissing(["images","category","subcategory"]);
+        // dd($product);
+        return view("products.show",compact("product"));
     }
 
     /**

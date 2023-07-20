@@ -66,6 +66,12 @@ Route::prefix("admin")->middleware("admin")->group(function(){
     });
 */
 Route::get('/', 'App\Http\Controllers\WebsiteController@home');
+Route::get('/di', 'App\Http\Controllers\WebsiteController@di');
+/* Route::get('/', function(){
+    // $sc = new Subcategory();
+    // dd($sc);
+    dd(app(Subcategory::class));
+}); */
 Route::get("/getsubcat/{id}",[SubcategoryController::class, 'getSubcat']);
 //request segments
 Route::get('/test/segment/idb/bisew', [ProductController::class, 'testsegment']);
