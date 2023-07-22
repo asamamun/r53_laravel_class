@@ -18,55 +18,27 @@
 @endsection
 
 @section('content')
-    <h1>welcome to home</h1>
-    @if (count($users))
-        <h1>you have users</h1>
-    @else
-        <h1>you have no users</h1>
-    @endif
-    <hr>
-    @unless (count($users))
-        <h1>no users found</h1>
-    @endunless
-    @if (!count($users))
-    <h1>you have no users</h1>
-        
-    @else
-    <h1>you have users</h1>  
-    @endif
+    <h1>Latest Products</h1>
+    <div class="row">
+        @forelse ($products as $p)
+        <div class="col-3 card border-success">
+            <div class="card-header bg-transparent border-success">{{$p->category->name}}</div>
+            <div class="card-body text-success">
+              <h5 class="card-title">{{$p->name}}</h5>
+              <p class="card-text">                
+                <img src="{{asset("storage/".$p->OneImage->name)}}" alt="{{$p->name}}" class="img-fluid">
+              </p>
+            </div>
+            <div class="card-footer bg-transparent border-success">Footer</div>
+          </div> 
+        @empty
+            
+        @endforelse
+ 
 
-    <h3>@{{ totalUsers }}</h3>
-    {{$users->links()}}
-    <ul>
-    @foreach ($users as $user)
-       <li> {{ $user->name}} ({{$user->email}})</li>
-    @endforeach
-    </ul>
-    <hr>
-    @forelse ($users as $user)
-    <li>{{ $user->name }}</li>
-    @empty
-        <p>No users</p>
-    @endforelse
-{{$users->links()}}
+    </div>
 
-<hr>
-<div id="colorContainer">
-    @forelse ($colors as $k=>$v)
-    {{-- <li>{{$loop->count}}</li> --}}
-    @if ($loop->first || $loop->last)
-        <li style="background-color: {{$k}}" class="bg-info">{{$v}}</li>
-    @else  
-    {{-- <li style="background-color: {{$k}}" class="">{{$loop->index}}{{$loop->iteration}} of {{$loop->count}} : {{$k}} = {{$v}}</li>  --}}
-    <li style="background-color: {{$k}}" class="">{{$v}}</li> 
-    @endif
-     
-    @empty
-        
-    @endforelse
-</div>
 
-<hr>
 
 @component('partials.modal')
 @slot('title')
