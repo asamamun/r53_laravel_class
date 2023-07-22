@@ -19,8 +19,8 @@ class ProductFactory extends Factory
     {
         $faker = $this->withFaker();
         return [
-            'category_id'=>"1",
-            'subcategory_id'=>rand(1,2),
+            'category_id'=>rand(1,7),
+            'subcategory_id'=>rand(1,25),
             'name' => $faker->word(10),
             'sku' => date('Ys').$this->faker->unique()->word,
             'details' => $faker->text,

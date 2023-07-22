@@ -67,6 +67,7 @@
     <a href="{{asset('storage/'.$image->name)}}" data-lightbox="product-{{$p->id}}">
     <img src="{{asset('storage/'.$image->name)}}" width="100px" alt="" loading="lazy"> 
     </a>
+    {{-- <img src="{{$image->name}}" width="100px" alt="" loading="lazy"> --}}
        {{-- old code for picsum images <img src="{{$image->name}}" width="100px" alt="" loading="lazy">  --}}
     @empty
     <div class="alert alert-warning" role="alert">
