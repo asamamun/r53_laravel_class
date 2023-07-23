@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ProductController;
 use App\Models\Subcategory;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,11 @@ Route::view('/', 'welcome');
 //route::get('/category', [CategoryController::class, 'index']);
 
 //resource
-
+Route::post('/tokens/create', function (Request $request) {
+    $token = $request->user()->createToken("round53token");
+ 
+    return ['token' => $token->plainTextToken,'alltokens'=>$request->user()->tokens];
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

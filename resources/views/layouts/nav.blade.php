@@ -19,6 +19,15 @@
             {{ __('Log Out') }}
         </x-responsive-nav-link>
     </form>      
+    <form class="d-inline" method="POST" action="{{ url('/tokens/create') }}">
+        @csrf
+    
+        <x-responsive-nav-link :href="route('logout')"
+                onclick="event.preventDefault();
+                            this.closest('form').submit();">
+            {{ __('Tokens') }}
+        </x-responsive-nav-link>
+    </form>      
     @endauth
     @guest
     <a href="{{route("login")}}">Login</a>
