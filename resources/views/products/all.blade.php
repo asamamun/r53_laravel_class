@@ -39,28 +39,33 @@
     {{-- edit --}}
         <a href="{{route("product.edit",$p->id)}}" class="btn btn-primary">EDIT</a>
     {{-- edit --}}
-    {{-- DELETE --}}
-    <form class="d-inline" onsubmit="return confirm('Are you sure?')" action="{{route('product.destroy',$p->id)}}" method="post">
-        @csrf
-        @method('delete')
-        <input type="submit" class="btn btn-danger" name="delete" value="Delete">
-        </form>
-    {{-- DELETE END --}}
+    
     @if ($p->deleted_at)
        {{-- restore --}}
     <form onsubmit="return confirm('Are you sure?')" action="{{route('product.restore',$p->id)}}" method="post">
         @csrf        
-        <input type="submit" class="btn btn-success" name="delete" value="Restore">
+        <input type="submit" class="btn btn-success" name="restore" value="Restore">
         </form>
     {{-- restore END --}} 
 
        {{-- delete --}}
     <form onsubmit="return confirm('Are you sure?')" action="{{route('product.restore',$p->id)}}" method="post">
         @csrf        
-        <input type="submit" class="btn btn-danger" name="delete" value="Permanent delete">
+        <input type="submit" class="btn btn-danger" name="permanentdelete" value="Permanent delete">
         </form>
     {{-- delete END --}} 
+    @else
+{{-- DELETE --}}
+<form class="d-inline" onsubmit="return confirm('Are you sure?')" action="{{route('product.destroy',$p->id)}}" method="post">
+    @csrf
+    @method('delete')
+    <input type="submit" class="btn btn-danger" name="delete" value="Delete">
+    </form>
+{{-- DELETE END --}}
     @endif
+
+
+
     <hr>
     <h1>Images</h1>
     @forelse ($p->images as $image)

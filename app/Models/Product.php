@@ -56,7 +56,7 @@ class Product extends Model
     }
     public function getOneImageAttribute() 
 {
-    return $this->hasMany(Image::class)->orderBy('id', 'desc')->first();
+    return $this->hasMany(Image::class)->orderBy('id', 'desc')->firstOrFail();
 }
     public function category()
     {

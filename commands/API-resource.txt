@@ -1,5 +1,0 @@
-php artisan make:controller ProductController --model=Product --resource --requests
-
-php artisan make:controller API\ProductController --api
-
-php artisan make:controller API\DogsController --api

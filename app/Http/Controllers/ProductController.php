@@ -10,6 +10,7 @@ use App\Models\Image;
 use App\Models\Subcategory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as ImageI;
 
@@ -20,6 +21,9 @@ class ProductController extends Controller
      */
     public function index()
     {
+        
+        echo session('aaa');
+        exit;
         /* $products = DB::table("products")
         ->where('price', '<', 2 )
         ->orWhere('price', '>', 70 )
@@ -44,6 +48,12 @@ class ProductController extends Controller
      */
     public function create()
     {
+        
+        session()->flash('aaa', 'Dataaa saved successfully.');
+        //return Storage::download("uploads/Uj8RaWDnTe896fvAKX9ENkAwK6p3mLshPXHnsL0R.jpg");
+        //dd(Storage::allFiles("uploads"));// echo "<img src='".storage_path("app\public\logo.png")."'/>";
+        // echo "<img src='".asset("storage/logo.png")."'/>";
+        // dd(Storage::get("logo.png"));
         //file:///D:/xampp8110/htdocs/Round53/laravel/r53_laravel_class/storage/app/public/logo.png
         //
         // echo storage_path("app/public").'/logo.png';
@@ -60,6 +70,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+       
         $product = Product::create($request->all());
         if($product){
            //

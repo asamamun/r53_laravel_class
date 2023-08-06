@@ -20,13 +20,16 @@
 @section('content')
     <h1>Latest Products</h1>
     <div class="row">
-        @forelse ($products as $p)
+        @forelse ($products as $p)        
         <div class="col-3 card border-success">
             <div class="card-header bg-transparent border-success">{{$p->category->name}}</div>
             <div class="card-body text-success">
               <h5 class="card-title">{{$p->name}}</h5>
-              <p class="card-text">                
-                <img src="{{asset("storage/".$p->OneImage->name)}}" alt="{{$p->name}}" class="img-fluid">
+              <p class="card-text">
+                @if (count($p->images))
+                <img src="{{asset("storage/".$p->OneImage->name)}}" alt="{{$p->name}}" class="img-fluid"> 
+                @endif                
+                
               </p>
             </div>
             <div class="card-footer bg-transparent border-success">Footer</div>
